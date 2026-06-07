@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi changuita ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Special+Elite&family=Shadows+Into+Light+Two&family=Anton&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0b0c; --red:#b41e29; --cream:#f0e8d8; --paper:#fdf6e3;
+  --tape:rgba(228,214,180,.6); --ink:#1a1218; --sh:rgba(0,0,0,.65);
+}
+body.bday{ --bg:#140a10; --red:#d6455e; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{ background:var(--bg); font-family:'Caveat',cursive; overflow-x:hidden; transition:background 2.5s; }
+
+/* ── IMÁGENES ── */
+.si{ /* slot de imagen */
+  display:block; overflow:hidden; background:#1a1416;
+  position:relative;
+}
+.si img,.si video{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.si .ph{ /* placeholder visible cuando no hay archivo */
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Special Elite';font-size:9px;color:rgba(240,232,216,.45);
+  text-align:center;padding:6px;line-height:1.5;
+  background:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 8px,rgba(255,255,255,.06) 8px 16px),#1a1416;
+  pointer-events:none;
+}
+.si.filled .ph{display:none;}
+
+/* ── CARTA DIGITAL ── */
+.carta-wrap{ position:relative; z-index:6; max-width:540px; margin:0 auto 50px; }
+.carta-bg{ background:#fdf6e3; padding:34px 30px 40px; box-shadow:0 12px 36px var(--sh); position:relative; }
+.carta-texto{
+  width:100%; min-height:260px; border:none; resize:vertical;
+  background:transparent; font-family:'Shadows Into Light Two',cursive;
+  font-size:20px; line-height:1.7; color:#2a2018;
+  outline:none; padding:0;
+}
+.carta-texto::placeholder{ color:rgba(42,32,24,.35); }
+.carta-titulo{ font-family:'Special Elite'; font-size:11px; color:var(--red); margin-bottom:14px; text-transform:uppercase; letter-spacing:2px; }
+
+/* ── TAPE ── */
+.tape{ position:absolute;z-index:8;pointer-events:none; height:22px;background:var(--tape); box-shadow:0 1px 3px rgba(0,0,0,.3); }
+.tape::after{ content:"";position:absolute;inset:0; background:repeating-linear-gradient(90deg,transparent 0 5px,rgba(0,0,0,.06) 5px 6px); }
+
+/* ── POLAROID ── */
+.pol{ background:var(--paper);padding:8px 8px 32px;box-shadow:0 8px 28px var(--sh);position:absolute;transition:transform .3s,box-shadow .3s,z-index 0s; }
+.pol:hover{ transform:var(--rot) translateY(-12px) scale(1.04)!important; box-shadow:0 24px 50px rgba(0,0,0,.8);z-index:60; }
+.pol .pcap{ position:absolute;bottom:5px;left:0;right:0;text-align:center; font-family:'Shadows Into Light Two',cursive;font-size:14px;color:var(--ink);padding:0 6px; }
+
+/* ── FOTO CRUDA ── */
+.rph{ position:absolute;overflow:hidden;box-shadow:0 6px 20px var(--sh);transition:transform .3s,box-shadow .3s; }
+.rph:hover{ transform:var(--rot) translateY(-8px) scale(1.03)!important;box-shadow:0 20px 44px rgba(0,0,0,.8);z-index:60; }
+
+/* ── STICKER ── */
+.stk{ position:absolute;z-index:20;pointer-events:none; }
+.stk .si{ background:transparent!important; }
+
+/* ── RANSOM NOTE (títulos) ── */
+.ransom{ display:flex;flex-wrap:wrap;gap:5px;align-items:flex-end;justify-content:center;position:relative;z-index:6; }
+.let{ display:inline-flex;align-items:center;justify-content:center;
+  width:52px;height:62px;flex:0 0 auto;box-shadow:0 4px 14px rgba(0,0,0,.5);position:relative;overflow:hidden; }
+.let .si{ position:absolute;inset:0;width:100%;height:100%; }
+.let .fb{ position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Anton',sans-serif;font-size:30px;color:rgba(240,232,216,.7);background:#1d1a1b;pointer-events:none; }
+.let:nth-child(3n){ transform:rotate(-5deg); }
+.let:nth-child(3n+1){ transform:rotate(4deg) scale(1.06); }
+.let:nth-child(3n+2){ transform:rotate(-2deg); }
+.let-sp{ width:18px;flex:0 0 18px; }
+
+/* ── STICKY / NOTA ── */
+.sticky{ background:#fef9c3;color:#2a2018;font-family:'Shadows Into Light Two',cursive;
+  font-size:18px;line-height:1.4;padding:16px 14px;position:relative;z-index:6;
+  box-shadow:0 8px 22px rgba(0,0,0,.5); }
+.sticky.dark{ background:#241820;color:var(--cream); }
+
+/* ── CONTADORES ── */
+.cnt{ background:var(--paper);color:var(--ink);padding:16px 20px;box-shadow:0 10px 26px var(--sh);position:relative;z-index:6;display:inline-block; }
+.cnt h4{ font-family:'Special Elite';font-size:11px;color:var(--red);text-transform:uppercase;margin-bottom:6px; }
+.cnt .num{ font-family:'Anton';font-size:28px; }
+.cnt .num span{ color:var(--red); }
+.cnt .sub{ font-family:'Special Elite';font-size:9px;color:#888;margin-top:3px; }
+
+/* ── VINILO ── */
+.vinyl-wrap{ position:relative;width:200px;height:200px;margin:0 auto;z-index:6; }
+.vinyl{ width:100%;height:100%;border-radius:50%;
+  background:repeating-radial-gradient(circle at 50%,#0e0e0e 0 2px,#1c1c1c 2px 4px);
+  box-shadow:0 0 0 8px #090909,0 14px 40px rgba(0,0,0,.8);
+  animation:spin 5s linear infinite;animation-play-state:paused;position:relative; }
+.vinyl.playing{ animation-play-state:running; }
+.vinyl-label{ position:absolute;inset:34%;border-radius:50%;
+  background:radial-gradient(circle,var(--red),#7a1119);display:flex;align-items:center;
+  justify-content:center;font-family:'Special Elite';font-size:8px;color:#fff;text-align:center;line-height:1.2;padding:4px; }
+.tonearm{ position:absolute;top:-8px;right:-10px;width:110px;height:12px;
+  background:linear-gradient(90deg,#ccc,#aaa);border-radius:8px;transform-origin:right center;
+  transform:rotate(-38deg);transition:transform .9s ease;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+.tonearm.on{ transform:rotate(-10deg); }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+
+/* ── MAPA ── */
+.map-wrap{ position:relative;max-width:860px;margin:0 auto;z-index:6; }
+.map-pin{ position:absolute;font-size:28px;cursor:pointer;z-index:8;
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,.7));transition:transform .2s; }
+.map-pin:hover{ transform:scale(1.4) translateY(-4px); }
+.mem-card{ display:none;position:absolute;z-index:30;width:220px;
+  background:var(--paper);color:var(--ink);padding:10px;
+  box-shadow:0 16px 40px rgba(0,0,0,.8);transform:rotate(-2deg); }
+.mem-card.show{ display:block;animation:pop .3s ease; }
+.mem-card .mc-img{ width:100%;height:130px;overflow:hidden;margin-bottom:6px; }
+.mem-card .mc-img img{ width:100%;height:100%;object-fit:cover; }
+.mem-card .mc-date{ font-family:'Special Elite';font-size:10px;color:var(--red); }
+.mem-card .mc-cap{ font-family:'Shadows Into Light Two',cursive;font-size:17px;margin-top:3px; }
+@keyframes pop{ from{opacity:0;transform:rotate(-2deg) scale(.8);}to{opacity:1;transform:rotate(-2deg) scale(1);} }
+
+/* ── SOBRES ── */
+.env-pile{ position:relative;max-width:700px;margin:0 auto;z-index:6; }
+.env{ position:absolute;cursor:pointer;
+  background:linear-gradient(160deg,#e9dfc6,#cfc0a0);
+  box-shadow:0 6px 18px var(--sh);transition:transform .25s,box-shadow .25s; }
+.env::before{ content:"";position:absolute;top:0;left:0;right:0;
+  border-top:50px solid #d4c49a; }
+.env-num{ position:absolute;bottom:6px;right:8px;font-family:'Special Elite';font-size:9px;color:#7a1119; }
+.env:hover{ transform:translateY(-10px) scale(1.06)!important;box-shadow:0 14px 34px rgba(0,0,0,.7);z-index:30; }
+
+/* modal carta */
+.ltr-modal{ display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.82);
+  align-items:center;justify-content:center;padding:20px; }
+.ltr-modal.show{ display:flex;animation:fi .35s; }
+@keyframes fi{ from{opacity:0}to{opacity:1} }
+.ltr-paper{ background:#fdf6e3;color:#2a2018;max-width:400px;width:100%;
+  padding:34px 28px;font-family:'Shadows Into Light Two',cursive;font-size:20px;
+  line-height:1.5;box-shadow:0 30px 80px rgba(0,0,0,.9);transform:rotate(-1.5deg);position:relative; }
+.ltr-day{ font-family:'Special Elite';color:var(--red);font-size:13px;margin-bottom:10px; }
+.ltr-x{ position:absolute;top:8px;right:12px;cursor:pointer;font-family:'Special Elite';font-size:18px;color:#a00; }
+
+/* ── TARJETAS ── */
+.card-grid{ display:flex;flex-wrap:wrap;gap:18px;justify-content:center;position:relative;z-index:6; }
+.dcard{ background:var(--paper);color:var(--ink);width:190px;padding:18px 14px;
+  box-shadow:0 8px 22px var(--sh);font-family:'Caveat';font-size:22px;text-align:center; }
+.dcard .cn{ font-family:'Anton';color:var(--red);font-size:12px;display:block;margin-bottom:6px; }
+.dcard:nth-child(2n){ transform:rotate(-4deg); }
+.dcard:nth-child(3n){ transform:rotate(3deg); }
+.dcard:nth-child(4n){ transform:rotate(-6deg); }
+.dcard:nth-child(5n){ transform:rotate(5deg); }
+
+/* ── VALES ── */
+.vales-grid{ display:flex;flex-wrap:wrap;gap:16px;justify-content:center;position:relative;z-index:6; }
+.vale{ width:220px;background:repeating-linear-gradient(90deg,#fdf6e3 0 16px,#f4ead0 16px 18px);
+  color:#2a2018;border:2px dashed #7a1119;padding:16px;cursor:pointer;
+  font-family:'Special Elite';font-size:11px;box-shadow:0 8px 20px var(--sh);transition:transform .25s;position:relative; }
+.vale:hover{ transform:rotate(-2deg) scale(1.05);z-index:20; }
+.vale .vt{ font-family:'Caveat';font-size:22px;margin-top:8px;display:block; }
+.vale.done::after{ content:"✔ CANJEADO";position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) rotate(-12deg);color:var(--red);font-size:16px;
+  font-family:'Anton';border:3px solid var(--red);padding:3px 8px;background:rgba(253,246,227,.9); }
+
+/* ── LOCK ── */
+.lockbox{ display:inline-block;background:var(--paper);color:var(--ink);
+  padding:34px 40px;box-shadow:0 20px 60px rgba(0,0,0,.8);transform:rotate(-1.5deg);position:relative; }
+.bd-cd{ font-family:'Anton';font-size:32px;color:var(--red);margin:12px 0; }
+.open-btn{ background:var(--red);color:#fff;border:none;font-family:'Special Elite';
+  font-size:15px;padding:13px 26px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.5);
+  transition:transform .2s;margin-top:10px; }
+.open-btn:hover{ transform:scale(1.06); }
+
+#bday-section{ display:none; }
+#bday-section.show{ display:block; }
+
+/* ── SECCIONES ── */
+.scrp{ position:relative;min-height:100vh;overflow:visible;padding:80px 24px 100px; }
+.scrp::after{ content:"";display:block;position:absolute;bottom:-2px;left:0;width:100%;height:30px;
+  background:var(--bg);
+  clip-path:polygon(0 30px,2% 10px,4% 26px,6% 5px,9% 22px,12% 2px,15% 18px,18% 6px,22% 24px,26% 4px,30% 20px,34% 8px,38% 26px,42% 2px,46% 18px,50% 6px,54% 24px,58% 4px,62% 22px,66% 10px,70% 28px,74% 6px,78% 20px,82% 4px,86% 22px,90% 8px,94% 26px,97% 12px,100% 30px,100% 100%,0 100%);z-index:10; }
+.sc{ position:relative;z-index:5;max-width:980px;margin:0 auto; }
+.bgl{ position:absolute;inset:0;overflow:hidden;z-index:1;pointer-events:none; }
+
+/* pétalos */
+.petal{ position:fixed;top:-50px;z-index:8000;pointer-events:none;font-size:24px;animation:fall linear forwards; }
+@keyframes fall{ to{transform:translateY(115vh) rotate(720deg);opacity:0;} }
+
+/* música */
+.mbtn{ position:fixed;bottom:20px;right:20px;z-index:9000;width:54px;height:54px;border-radius:50%;
+  background:var(--red);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.6); }
+.sp{ position:fixed;bottom:86px;right:20px;z-index:9000;display:none;width:290px;box-shadow:0 10px 30px rgba(0,0,0,.7); }
+.sp.show{ display:block; }
+
+/* reveal */
+.rv{ opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1); }
+.rv.in{ opacity:1;transform:translateY(0); }
+
+/* grain */
+#grain{ position:fixed;inset:0;z-index:9997;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px; }
+
+/* final */
+.final-text{ font-family:'Caveat';font-size:28px;line-height:1.6;color:var(--cream);text-align:center;max-width:560px;margin:0 auto;position:relative;z-index:6; }
+.final-text .sig{ font-family:'Permanent Marker',cursive;font-size:24px;color:var(--red);margin-top:18px; }
+
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#0d0b0c;}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:3px;}
+</style>
+</head>
+<body>
+<div id="grain"></div>
+
+<!-- ═══════════════════════════════════════════════
+     PORTADA
+═══════════════════════════════════════════════ -->
+<section class="scrp" style="background:radial-gradient(ellipse at 40% 0%,#201518,var(--bg))">
+  <div class="bgl">
+    <!-- fotos y recortes de fondo: pon cualquier foto, recorte o sticker -->
+    <div class="pol" style="--rot:rotate(-8deg);width:180px;top:20px;left:-20px;transform:rotate(-8deg)"><div class="tape" style="width:55px;top:-10px;left:38%"></div><div class="si" style="width:164px;height:210px"><img src="fotos/foto1.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto1.jpg</div></div></div>
+    <div class="pol" style="--rot:rotate(9deg);width:200px;top:60px;right:10px;transform:rotate(9deg)"><div class="tape" style="width:60px;top:-10px;left:35%"></div><div class="si" style="width:184px;height:230px"><img src="fotos/foto2.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto2.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(-6deg);width:220px;height:160px;bottom:60px;left:5px;transform:rotate(-6deg)"><div class="si" style="width:220px;height:160px"><img src="recortes/recorte1.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte1.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(5deg);width:190px;height:200px;bottom:40px;right:5px;transform:rotate(5deg)"><div class="si" style="width:190px;height:200px"><img src="fotos/foto3.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto3.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(3deg);width:260px;height:120px;top:10px;left:50%;transform:translateX(-50%) rotate(3deg)"><div class="si" style="width:260px;height:120px"><img src="recortes/recorte2.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte2.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(11deg);width:160px;height:110px;top:350px;left:1%;transform:rotate(11deg)"><div class="si" style="width:160px;height:110px"><img src="recortes/recorte3.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte3.jpg</div></div></div>
+    <div class="pol" style="--rot:rotate(7deg);width:130px;top:600px;left:2%;transform:rotate(7deg)"><div class="tape" style="width:42px;top:-8px;left:35%"></div><div class="si" style="width:114px;height:140px"><img src="fotos/foto4.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto4.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(-9deg);width:155px;height:105px;top:640px;right:2%;transform:rotate(-9deg)"><div class="si" style="width:155px;height:105px"><img src="recortes/recorte4.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte4.jpg</div></div></div>
+    <div class="stk" style="width:100px;height:100px;top:80px;left:22%;transform:rotate(-12deg)"><div class="si" style="width:100px;height:100px"><img src="stickers/sticker1.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker1.png</div></div></div>
+    <div class="stk" style="width:120px;height:70px;bottom:180px;right:18%;transform:rotate(8deg)"><div class="si" style="width:120px;height:70px"><img src="stickers/sticker2.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker2.png</div></div></div>
+    <div class="stk" style="width:80px;height:80px;top:200px;left:38%;transform:rotate(15deg)"><div class="si" style="width:80px;height:80px"><img src="stickers/sticker3.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker3.png</div></div></div>
+    <div class="stk" style="width:110px;height:110px;bottom:100px;left:12%;transform:rotate(-8deg)"><div class="si" style="width:110px;height:110px"><img src="stickers/sticker4.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker4.png</div></div></div>
+    <div class="stk" style="width:90px;height:90px;bottom:200px;right:40%;transform:rotate(6deg)"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker5.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker5.png</div></div></div>
+    <div class="stk" style="width:75px;height:75px;top:460px;left:35%;transform:rotate(-16deg)"><div class="si" style="width:75px;height:75px"><img src="stickers/sticker6.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker6.png</div></div></div>
+    <div class="stk" style="width:90px;height:90px;top:700px;left:40%;transform:rotate(13deg)"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker7.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker7.png</div></div></div>
+  </div>
+
+  <div class="sc" style="text-align:center;padding-top:30px">
+    <!-- TÍTULO RANSOM: PARA MI -->
+    <div class="ransom rv" style="margin-bottom:4px">
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra1.png" onerror="this.style.display='none'"></div><span class="fb">P</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra2.png" onerror="this.style.display='none'"></div><span class="fb">A</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra3.png" onerror="this.style.display='none'"></div><span class="fb">R</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra4.png" onerror="this.style.display='none'"></div><span class="fb">A</span></div>
+      <div class="let-sp"></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra5.png" onerror="this.style.display='none'"></div><span class="fb">M</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra6.png" onerror="this.style.display='none'"></div><span class="fb">I</span></div>
+    </div>
+    <!-- CHANGUITA -->
+    <div class="ransom rv" style="margin-bottom:20px">
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra7.png" onerror="this.style.display='none'"></div><span class="fb">C</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra8.png" onerror="this.style.display='none'"></div><span class="fb">H</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra9.png" onerror="this.style.display='none'"></div><span class="fb">A</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra10.png" onerror="this.style.display='none'"></div><span class="fb">N</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra11.png" onerror="this.style.display='none'"></div><span class="fb">G</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra12.png" onerror="this.style.display='none'"></div><span class="fb">U</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra13.png" onerror="this.style.display='none'"></div><span class="fb">I</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra14.png" onerror="this.style.display='none'"></div><span class="fb">T</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra15.png" onerror="this.style.display='none'"></div><span class="fb">A</span></div>
+      <span style="font-size:52px;align-self:center;margin-left:4px">❤️</span>
+    </div>
+
+    <p class="rv" style="font-family:'Shadows Into Light Two',cursive;font-size:22px;color:var(--cream);margin-bottom:24px;position:relative;z-index:6">
+      Un álbum de todo lo que somos — con una sorpresa que se abre en un ratonnnnnn.
+    </p>
+
+    <div class="vinyl-wrap rv" style="margin-bottom:22px">
+      <div class="vinyl" id="vinyl"><div class="vinyl-label">NUESTRA<br>PLAYLIST<br>♥</div></div>
+      <div class="tonearm" id="tonearm"></div>
+    </div>
+    <p style="font-family:'Special Elite';font-size:10px;color:rgba(240,232,216,.5);position:relative;z-index:6">▶ botón 🎵 abajo para la música</p>
+
+    <!-- foto principal (la más especial) -->
+    <div class="pol rv" style="position:relative;width:240px;margin:30px auto;--rot:rotate(2deg);transform:rotate(2deg)">
+      <div class="tape" style="width:80px;top:-12px;left:50%;transform:translateX(-50%) rotate(-5deg)"></div>
+      <!-- RENOMBRA tu foto favorita como: fotos/fotoPortada.jpg -->
+      <div class="si" style="width:224px;height:290px"><img src="fotos/fotoPortada.jpg" onerror="this.style.display='none'"><div class="ph">fotos/fotoPortada.jpg<br><br>← renombra tu foto favorita así</div></div>
+      <span class="pcap">favorite person ↓</span>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;position:relative;z-index:6" class="rv">
+      <div class="cnt" style="transform:rotate(-3deg)">
+        <h4>Nuestra historia desde...</h4>
+        <div class="num" id="c1">—</div>
+        <div class="sub">23 de febrero</div>
+      </div>
+      <div class="cnt" style="transform:rotate(2deg)">
+        <h4>Desde que eres oficialmente mi novia</h4>
+        <div class="num" id="c2">—</div>
+        <div class="sub">7 de marzo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     MAPA DE RECUERDOS
+═══════════════════════════════════════════════ -->
+<section class="scrp" style="background:linear-gradient(180deg,#150f12,#0d0b0c)">
+  <div class="bgl">
+    <div class="pol" style="--rot:rotate(7deg);width:160px;top:30px;left:-10px;transform:rotate(7deg)"><div class="tape" style="width:50px;top:-10px;left:40%"></div><div class="si" style="width:144px;height:190px"><img src="fotos/foto5.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto5.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(-9deg);width:200px;height:140px;bottom:80px;right:-10px;transform:rotate(-9deg)"><div class="si" style="width:200px;height:140px"><img src="recortes/recorte5.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte5.jpg</div></div></div>
+    <div class="pol" style="--rot:rotate(10deg);width:140px;top:240px;left:-5px;transform:rotate(10deg)"><div class="tape" style="width:44px;top:-8px;left:36%"></div><div class="si" style="width:124px;height:155px"><img src="fotos/foto6.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto6.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(8deg);width:190px;height:90px;bottom:10px;left:25%;transform:rotate(8deg)"><div class="si" style="width:190px;height:90px"><img src="recortes/recorte6.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte6.jpg</div></div></div>
+    <div class="stk" style="width:80px;height:80px;top:120px;right:15%;transform:rotate(12deg)"><div class="si" style="width:80px;height:80px"><img src="stickers/sticker8.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker8.png</div></div></div>
+    <div class="stk" style="width:90px;height:90px;bottom:140px;left:10%;transform:rotate(-7deg)"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker9.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker9.png</div></div></div>
+    <div class="stk" style="width:80px;height:80px;bottom:80px;right:8%;transform:rotate(-11deg)"><div class="si" style="width:80px;height:80px"><img src="stickers/sticker10.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker10.png</div></div></div>
+  </div>
+  <div class="sc">
+    <div class="ransom rv" style="margin-bottom:24px">
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra16.png" onerror="this.style.display='none'"></div><span class="fb">N</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra17.png" onerror="this.style.display='none'"></div><span class="fb">U</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra18.png" onerror="this.style.display='none'"></div><span class="fb">E</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra19.png" onerror="this.style.display='none'"></div><span class="fb">S</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra20.png" onerror="this.style.display='none'"></div><span class="fb">T</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra21.png" onerror="this.style.display='none'"></div><span class="fb">R</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra22.png" onerror="this.style.display='none'"></div><span class="fb">A</span></div>
+      <div class="let-sp"></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra23.png" onerror="this.style.display='none'"></div><span class="fb">H</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra24.png" onerror="this.style.display='none'"></div><span class="fb">I</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra25.png" onerror="this.style.display='none'"></div><span class="fb">S</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra26.png" onerror="this.style.display='none'"></div><span class="fb">T</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra27.png" onerror="this.style.display='none'"></div><span class="fb">O</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra28.png" onerror="this.style.display='none'"></div><span class="fb">R</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra29.png" onerror="this.style.display='none'"></div><span class="fb">I</span></div>
+      <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra30.png" onerror="this.style.display='none'"></div><span class="fb">A</span></div>
+    </div>
+    <div class="map-wrap rv">
+      <div class="pol" style="position:relative;--rot:rotate(0);transform:none;width:100%;padding:8px">
+        <div class="tape" style="width:80px;top:-11px;left:20%;transform:rotate(-6deg)"></div>
+        <div class="tape" style="width:80px;top:-11px;right:20%;transform:rotate(5deg)"></div>
+        <!-- MAPA: pon aquí tu imagen de mapa vintage -->
+        <div class="si" style="width:100%;height:430px"><img src="recortes/mapaVintage.jpg" onerror="this.style.display='none'"><div class="ph">recortes/mapaVintage.jpg<br>← sube aquí tu mapa vintage</div></div>
+        <!-- Cada pin tiene su PROPIA foto: fotoMapaXxx.jpg -->
+        <div class="map-pin" style="top:15%;left:22%" onclick="showMem(this)"
+          data-date="Primera cita ✨" data-cap="Aquí empezó todo."
+          data-img="fotos/fotoMapaPrimeraCita.jpg">📍</div>
+        <div class="map-pin" style="top:38%;left:52%" onclick="showMem(this)"
+          data-date="Primer beso 💋" data-cap="No me lo voy a olvidar nunca."
+          data-img="fotos/fotoMapaPrimerBeso.jpg">📍</div>
+        <div class="map-pin" style="top:60%;left:28%" onclick="showMem(this)"
+          data-date="7 de marzo 💍" data-cap="El día que dijiste que sí."
+          data-img="fotos/fotoMapa7Mar.jpg">📍</div>
+        <div class="map-pin" style="top:28%;left:75%" onclick="showMem(this)"
+          data-date="Primer te amo 🥹" data-cap="Se nos salió del alma upsssss."
+          data-img="fotos/fotoMapaPrimerTeAmo.jpg">📍</div>
+        <div class="map-pin" style="top:72%;left:63%" onclick="showMem(this)"
+          data-date="Primera videollamada 📱" data-cap="Deslumbrado desde tu camara sucia."
+          data-img="fotos/fotoMapaVideoLlamada.jpg">📍</div>
+        <!-- tarjeta popup del pin -->
+        <div class="mem-card" id="memCard">
+          <div class="mc-img"><img id="mcImg" src="" alt=""></div>
+          <div class="mc-date" id="mcDate"></div>
+          <div class="mc-cap" id="mcCap"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     13 SEMANAS
+═══════════════════════════════════════════════ -->
+<section class="scrp" style="background:linear-gradient(180deg,#0d0b0c,#150d11)">
+  <div class="bgl">
+    <div class="pol" style="--rot:rotate(-11deg);width:170px;top:40px;right:-15px;transform:rotate(-11deg)"><div class="tape" style="width:55px;top:-10px;left:38%"></div><div class="si" style="width:154px;height:200px"><img src="fotos/foto7.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto7.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(8deg);width:210px;height:150px;bottom:50px;left:-5px;transform:rotate(8deg)"><div class="si" style="width:210px;height:150px"><img src="recortes/recorte7.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte7.jpg</div></div></div>
+    <div class="pol" style="--rot:rotate(-12deg);width:140px;top:260px;left:-8px;transform:rotate(-12deg)"><div class="tape" style="width:44px;top:-8px;left:36%"></div><div class="si" style="width:124px;height:155px"><img src="fotos/foto8.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto8.jpg</div></div></div>
+    <div class="stk" style="width:100px;height:100px;top:160px;left:8%;transform:rotate(-14deg)"><div class="si" style="width:100px;height:100px"><img src="stickers/sticker11.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker11.png</div></div></div>
+    <div class="stk" style="width:85px;height:85px;bottom:80px;right:6%;transform:rotate(-9deg)"><div class="si" style="width:85px;height:85px"><img src="stickers/sticker12.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker12.png</div></div></div>
+  </div>
+  <div class="sc" style="text-align:center">
+    <div class="sticky rv" style="display:inline-block;transform:rotate(-2deg);font-size:22px;margin-bottom:22px">
+      19 semanas amándote y extrañándote ✉️ — abre una cada vez
+    </div>
+    <div class="env-pile rv" id="envBox"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CARTA DIGITAL + COLLAGE
+═══════════════════════════════════════════════ -->
+<section class="scrp" style="background:linear-gradient(180deg,#150d11,#0d0b0c)">
+  <div class="bgl">
+    <div class="pol" style="--rot:rotate(-7deg);width:190px;top:10px;left:-20px;transform:rotate(-7deg)"><div class="tape" style="width:58px;top:-10px;left:38%"></div><div class="si" style="width:174px;height:220px"><img src="fotos/foto9.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto9.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(6deg);width:200px;height:260px;top:20px;right:-15px;transform:rotate(6deg)"><div class="si" style="width:200px;height:260px"><img src="fotos/foto10.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto10.jpg</div></div></div>
+    <div class="pol" style="--rot:rotate(10deg);width:170px;bottom:60px;left:5px;transform:rotate(10deg)"><div class="tape" style="width:52px;top:-10px;left:35%"></div><div class="si" style="width:154px;height:190px"><img src="fotos/foto11.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto11.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(-5deg);width:240px;height:130px;bottom:20px;right:0;transform:rotate(-5deg)"><div class="si" style="width:240px;height:130px"><img src="recortes/recorte8.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte8.jpg</div></div></div>
+    <div class="stk" style="width:100px;height:80px;top:300px;left:6%;transform:rotate(-10deg)"><div class="si" style="width:100px;height:80px"><img src="stickers/sticker13.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker13.png</div></div></div>
+    <div class="stk" style="width:90px;height:90px;bottom:200px;right:8%;transform:rotate(14deg)"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker14.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker14.png</div></div></div>
+  </div>
+  <div class="sc">
+    <div class="sticky rv" style="display:inline-block;transform:rotate(-1deg);font-size:24px;margin-bottom:30px;position:relative;z-index:6">Una carta para ti 💌</div>
+
+    <!-- CARTA DIGITAL — escribe aquí directamente -->
+    <div class="carta-wrap rv">
+      <div class="tape" style="width:70px;top:-12px;left:15%;transform:rotate(-8deg)"></div>
+      <div class="tape" style="width:70px;top:-12px;right:15%;transform:rotate(7deg)"></div>
+      <div class="carta-bg">
+        <div class="carta-titulo">Para mi changuita empanizada de melón ❤️</div>
+        <div style="width:100%;font-family:'Shadows Into Light Two',cursive;font-size:20px;line-height:1.9;color:#2a2018;white-space:pre-line;max-height:420px;overflow-y:auto;padding-right:8px;">Changuita,
+Voy a admitir algo.
+Todavía me pasa que te veo y pienso "qué bonita está esta niña".
+Y luego pasan cinco minutos y vuelvo a pensarlo.
+Y luego otra vez.
+Y otra.
+No importa cuántas veces te vea.
+No importa si estás arreglada para salir o si acabas de despertar sin bañárte como siempre.
+Siempre encuentro algo que me hace enamorarme un poquito más.
+Tus ojos.
+Tu sonrisa.
+Tus cachetitos.
+Tu forma de hablar.
+Tus ocurrencias.
+Todo.
+Y creo que eso es de mis cosas favoritas de nosotros. Que después de tres meses sigo sintiendo mariposas por cosas tan simples como verte intentar abrir la llave de abajo de tu fracc.
+Te amo muchísimo, pulguita hermosa.
+Te ama,
+-Tu changuito (simio tambien me puedes decir)</div>
+      </div>
+    </div>
+
+    <!-- COLLAGE fotos específicas -->
+    <!-- fotoNosotros = foto con caption "nosotros" -->
+    <!-- fotoMyGirl = foto con caption "my girl" -->
+    <div style="position:relative;min-height:700px;max-width:980px;margin:0 auto" class="rv">
+      <div class="pol" style="--rot:rotate(-8deg);width:200px;top:0;left:0;transform:rotate(-8deg)"><div class="tape" style="width:60px;top:-10px;left:38%"></div><div class="si" style="width:184px;height:230px"><img src="fotos/fotoNosotros.gif" onerror="this.style.display='none'"><div class="ph">fotos/fotoNosotros.gif</div></div><span class="pcap">nosotros ♥</span></div>
+      <div class="rph" style="--rot:rotate(5deg);width:230px;height:170px;top:10px;left:30%;transform:rotate(5deg)"><div class="si" style="width:230px;height:170px"><img src="fotos/foto12.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto12.jpg</div></div></div>
+      <div class="pol" style="--rot:rotate(9deg);width:180px;top:0;right:0;transform:rotate(9deg)"><div class="tape" style="width:55px;top:-10px;left:38%"></div><div class="si" style="width:164px;height:210px"><img src="fotos/fotoMyGirl.jpg" onerror="this.style.display='none'"><div class="ph">fotos/fotoMyGirl.jpg</div></div><span class="pcap">my girl ♥</span></div>
+      <div class="pol" style="--rot:rotate(-6deg);width:210px;top:240px;left:5%;transform:rotate(-6deg)"><div class="tape" style="width:64px;top:-10px;left:36%"></div><div class="si" style="width:194px;height:240px"><img src="fotos/foto13.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto13.jpg</div></div><span class="pcap">7 de marzo</span></div>
+      <div class="rph" style="--rot:rotate(3deg);width:220px;height:280px;top:210px;left:34%;transform:rotate(3deg)"><div class="si" style="width:220px;height:280px"><img src="fotos/foto14.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto14.jpg</div></div></div>
+      <div class="pol" style="--rot:rotate(-10deg);width:190px;top:230px;right:2%;transform:rotate(-10deg)"><div class="tape" style="width:58px;top:-10px;left:37%"></div><div class="si" style="width:174px;height:220px"><img src="fotos/fotoTeAmo.jpg" onerror="this.style.display='none'"><div class="ph">fotos/fotoTeAmo.jpg</div></div><span class="pcap">te amo 🤍</span></div>
+      <div class="pol" style="--rot:rotate(7deg);width:200px;top:490px;left:0%;transform:rotate(7deg)"><div class="tape" style="width:60px;top:-10px;left:37%"></div><div class="si" style="width:184px;height:230px"><img src="fotos/foto15.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto15.jpg</div></div></div>
+      <div class="rph" style="--rot:rotate(-5deg);width:240px;height:190px;top:500px;left:23%;transform:rotate(-5deg)"><div class="si" style="width:240px;height:190px"><img src="recortes/recorte9.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte9.jpg</div></div></div>
+      <div class="pol" style="--rot:rotate(5deg);width:200px;top:495px;left:48%;transform:rotate(5deg)"><div class="tape" style="width:58px;top:-10px;left:37%"></div><div class="si" style="width:184px;height:225px"><img src="fotos/foto16.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto16.jpg</div></div></div>
+      <div class="rph" style="--rot:rotate(-8deg);width:225px;height:170px;top:510px;right:0;transform:rotate(-8deg)"><div class="si" style="width:225px;height:170px"><img src="fotos/foto17.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto17.jpg</div></div></div>
+      <div class="stk" style="position:absolute;width:90px;height:90px;top:185px;left:23%;transform:rotate(-12deg);z-index:20"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker15.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker15.png</div></div></div>
+      <div class="stk" style="position:absolute;width:80px;height:80px;top:450px;left:56%;transform:rotate(8deg);z-index:20"><div class="si" style="width:80px;height:80px"><img src="stickers/sticker16.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker16.png</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     COLLAGE LIBRE EXTRA
+═══════════════════════════════════════════════ -->
+<section class="scrp" style="background:#0d0b0c;min-height:auto;padding:40px 0 60px">
+  <div class="sc" style="position:relative;min-height:820px">
+    <div class="pol" style="position:absolute;--rot:rotate(-7deg);width:230px;top:0;left:0;transform:rotate(-7deg)"><div class="tape" style="width:65px;top:-10px;left:37%"></div><div class="si" style="width:214px;height:270px"><img src="fotos/foto18.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto18.jpg</div></div></div>
+    <div class="rph" style="position:absolute;--rot:rotate(4deg);width:260px;height:200px;top:10px;left:22%;transform:rotate(4deg)"><div class="si" style="width:260px;height:200px"><img src="fotos/foto19.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto19.jpg</div></div></div>
+    <div class="pol" style="position:absolute;--rot:rotate(9deg);width:210px;top:5px;left:52%;transform:rotate(9deg)"><div class="tape" style="width:60px;top:-10px;left:37%"></div><div class="si" style="width:194px;height:240px"><img src="fotos/foto20.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto20.jpg</div></div></div>
+    <div class="rph" style="position:absolute;--rot:rotate(-5deg);width:240px;height:180px;top:0;right:0;transform:rotate(-5deg)"><div class="si" style="width:240px;height:180px"><img src="recortes/recorte10.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte10.jpg</div></div></div>
+    <div class="stk" style="position:absolute;width:95px;height:95px;top:130px;left:43%;transform:rotate(-15deg);z-index:10"><div class="si" style="width:95px;height:95px"><img src="stickers/sticker17.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker17.png</div></div></div>
+    <div class="rph" style="position:absolute;--rot:rotate(6deg);width:220px;height:280px;top:250px;left:1%;transform:rotate(6deg)"><div class="si" style="width:220px;height:280px"><img src="fotos/foto21.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto21.jpg</div></div></div>
+    <div class="pol" style="position:absolute;--rot:rotate(-8deg);width:200px;top:220px;left:24%;transform:rotate(-8deg)"><div class="tape" style="width:58px;top:-10px;left:37%"></div><div class="si" style="width:184px;height:225px"><img src="fotos/fotoFavorita2.jpg" onerror="this.style.display='none'"><div class="ph">fotos/fotoFavorita2.jpg</div></div><span class="pcap">i love you.</span></div>
+    <div class="rph" style="position:absolute;--rot:rotate(3deg);width:250px;height:190px;top:240px;left:46%;transform:rotate(3deg)"><div class="si" style="width:250px;height:190px"><img src="recortes/recorte11.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte11.jpg</div></div></div>
+    <div class="pol" style="position:absolute;--rot:rotate(-11deg);width:195px;top:230px;right:1%;transform:rotate(-11deg)"><div class="tape" style="width:56px;top:-10px;left:37%"></div><div class="si" style="width:179px;height:220px"><img src="fotos/foto22.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto22.jpg</div></div></div>
+    <div class="stk" style="position:absolute;width:90px;height:90px;top:400px;left:42%;transform:rotate(8deg);z-index:10"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker18.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker18.png</div></div></div>
+    <div class="pol" style="position:absolute;--rot:rotate(8deg);width:220px;top:520px;left:0;transform:rotate(8deg)"><div class="tape" style="width:62px;top:-10px;left:37%"></div><div class="si" style="width:204px;height:250px"><img src="fotos/foto23.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto23.jpg</div></div></div>
+    <div class="rph" style="position:absolute;--rot:rotate(-6deg);width:245px;height:200px;top:530px;left:23%;transform:rotate(-6deg)"><div class="si" style="width:245px;height:200px"><img src="recortes/recorte12.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte12.jpg</div></div></div>
+    <div class="pol" style="position:absolute;--rot:rotate(5deg);width:205px;top:510px;left:48%;transform:rotate(5deg)"><div class="tape" style="width:60px;top:-10px;left:37%"></div><div class="si" style="width:189px;height:235px"><img src="fotos/foto24.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto24.jpg</div></div><span class="pcap">favorite person ♥</span></div>
+    <div class="rph" style="position:absolute;--rot:rotate(-9deg);width:230px;height:175px;top:530px;right:0;transform:rotate(-9deg)"><div class="si" style="width:230px;height:175px"><img src="fotos/foto25.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto25.jpg</div></div></div>
+    <div class="stk" style="position:absolute;width:88px;height:88px;bottom:30px;left:16%;transform:rotate(14deg);z-index:10"><div class="si" style="width:88px;height:88px"><img src="stickers/sticker19.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker19.png</div></div></div>
+    <div class="stk" style="position:absolute;width:82px;height:82px;bottom:20px;right:15%;transform:rotate(-10deg);z-index:10"><div class="si" style="width:82px;height:82px"><img src="stickers/sticker20.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker20.png</div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     EL CORAZÓN PCB
+═══════════════════════════════════════════════ -->
+<section class="scrp" style="background:linear-gradient(160deg,#0a0d12,#150d11)">
+  <div class="bgl">
+    <div class="rph" style="--rot:rotate(-3deg);width:55%;height:320px;top:30px;left:0;transform:rotate(-3deg);opacity:.2"><div class="si" style="width:100%;height:320px"><img src="pcb/esquematico.jpg" onerror="this.style.display='none'"><div class="ph">pcb/esquematico.jpg</div></div></div>
+    <div class="rph" style="--rot:rotate(4deg);width:45%;height:260px;bottom:30px;right:0;transform:rotate(4deg);opacity:.2"><div class="si" style="width:100%;height:260px"><img src="pcb/fusion360.jpg" onerror="this.style.display='none'"><div class="ph">pcb/fusion360.jpg</div></div></div>
+    <div class="stk" style="width:100px;height:100px;top:80px;right:10%;transform:rotate(-9deg)"><div class="si" style="width:100px;height:100px"><img src="stickers/sticker21.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker21.png</div></div></div>
+  </div>
+  <div class="sc" style="text-align:center">
+    <div class="sticky dark rv" style="display:inline-block;transform:rotate(-2deg);font-size:22px;margin-bottom:28px;position:relative;z-index:6">El corazón que aún no puedo darte 🤍</div>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center;position:relative;z-index:6" class="rv">
+      <div class="pol" style="position:relative;--rot:rotate(-5deg);transform:rotate(-5deg);width:220px"><div class="tape" style="width:65px;top:-10px;left:36%"></div><div class="si" style="width:204px;height:204px"><img src="pcb/renderKiCad.jpg" onerror="this.style.display='none'"><div class="ph">pcb/renderKiCad.jpg</div></div><span class="pcap">render KiCad</span></div>
+      <div class="pol" style="position:relative;--rot:rotate(4deg);transform:rotate(4deg);width:220px"><div class="tape" style="width:65px;top:-10px;left:36%"></div><div class="si" style="width:204px;height:204px"><img src="pcb/pcbEnsamblado.jpg" onerror="this.style.display='none'"><div class="ph">pcb/pcbEnsamblado.jpg</div></div><span class="pcap">ensamblado</span></div>
+      <!-- VIDEO del corazón funcionando -->
+      <div class="pol" style="position:relative;--rot:rotate(-3deg);transform:rotate(-3deg);width:240px">
+        <div class="tape" style="width:70px;top:-10px;left:35%"></div>
+        <div class="si" style="width:224px;height:224px">
+          <!-- el video se pone con la etiqueta <video>, no <img> -->
+          <video src="videos/video1.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+            onerror="this.style.display='none'"></video>
+          <div class="ph">videos/video1.mp4<br>← pon aquí el video del PCB</div>
+        </div>
+        <span class="pcap">LEDs ✨</span>
+      </div>
+    </div>
+    <!-- nota pegada con masking tape -->
+    <div style="background:#fdf6e3;color:#2a2018;font-family:'Shadows Into Light Two',cursive;font-size:22px;line-height:1.5;padding:22px 24px;max-width:380px;box-shadow:0 12px 30px var(--sh);position:relative;z-index:6;margin:34px auto;transform:rotate(-1deg)" class="rv">
+      <div class="tape" style="width:90px;top:-12px;left:50%;transform:translateX(-50%) rotate(-4deg)"></div>
+      No puedo darte este corazón todavía, pero ya te pertenece.<br>
+      <span style="font-size:17px;opacity:.75">Y la verdad es que te pertenece desde mucho antes de que existiera.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BLOQUEO CUMPLEAÑOS
+═══════════════════════════════════════════════ -->
+<section class="scrp" id="sec-lock" style="background:linear-gradient(180deg,#0d0b0c,#1a0d14)">
+  <div class="bgl">
+    <div class="pol" style="--rot:rotate(-8deg);width:160px;top:30px;left:-10px;transform:rotate(-8deg)"><div class="tape" style="width:50px;top:-10px;left:38%"></div><div class="si" style="width:144px;height:180px"><img src="fotos/foto26.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto26.jpg</div></div></div>
+    <div class="stk" style="width:90px;height:90px;bottom:120px;right:10%;transform:rotate(11deg)"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker22.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker22.png</div></div></div>
+  </div>
+  <div class="sc" style="text-align:center">
+    <div class="lockbox rv">
+      <div class="tape" style="width:90px;top:-12px;left:50%;transform:translateX(-50%) rotate(-5deg)"></div>
+      <div style="font-size:56px">🔒</div>
+      <p style="font-family:'Shadows Into Light Two',cursive;font-size:26px;margin:8px 0">Todavía no...</p>
+      <p style="font-family:'Special Elite';font-size:12px;margin-bottom:10px">Te toca esperar un poquito más, changuita.</p>
+      <div class="bd-cd" id="bdCd">—</div>
+      <button class="open-btn" onclick="tryUnlock()">✨ Intentar abrir</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CUMPLEAÑOS (oculto hasta el 8 jun)
+═══════════════════════════════════════════════ -->
+<div id="bday-section">
+
+  <section class="scrp" style="background:linear-gradient(160deg,#200d18,#150d11);text-align:center">
+    <div class="bgl">
+      <div class="pol" style="--rot:rotate(-9deg);width:180px;top:20px;left:-15px;transform:rotate(-9deg)"><div class="tape" style="width:55px;top:-10px;left:38%"></div><div class="si" style="width:164px;height:210px"><img src="fotos/foto27.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto27.jpg</div></div></div>
+      <div class="rph" style="--rot:rotate(7deg);width:200px;height:150px;bottom:60px;right:-10px;transform:rotate(7deg)"><div class="si" style="width:200px;height:150px"><img src="recortes/recorte13.jpg" onerror="this.style.display='none'"><div class="ph">recortes/recorte13.jpg</div></div></div>
+      <div class="stk" style="width:100px;height:100px;top:150px;right:15%;transform:rotate(-12deg)"><div class="si" style="width:100px;height:100px"><img src="stickers/sticker23.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker23.png</div></div></div>
+    </div>
+    <div class="sc">
+      <div class="ransom rv" style="margin-bottom:16px">
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra31.png" onerror="this.style.display='none'"></div><span class="fb">F</span></div>
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra32.png" onerror="this.style.display='none'"></div><span class="fb">E</span></div>
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra33.png" onerror="this.style.display='none'"></div><span class="fb">L</span></div>
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra34.png" onerror="this.style.display='none'"></div><span class="fb">I</span></div>
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra35.png" onerror="this.style.display='none'"></div><span class="fb">Z</span></div>
+        <div class="let-sp"></div>
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra36.png" onerror="this.style.display='none'"></div><span class="fb">C</span></div>
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra37.png" onerror="this.style.display='none'"></div><span class="fb">U</span></div>
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra38.png" onerror="this.style.display='none'"></div><span class="fb">M</span></div>
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra39.png" onerror="this.style.display='none'"></div><span class="fb">P</span></div>
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra40.png" onerror="this.style.display='none'"></div><span class="fb">L</span></div>
+        <div class="let"><div class="si" style="position:absolute;inset:0"><img src="letras/letra41.png" onerror="this.style.display='none'"></div><span class="fb">E</span></div>
+      </div>
+      <p class="rv" style="font-family:'Shadows Into Light Two',cursive;font-size:24px;color:var(--cream)">Celebrando a la increíble cosita que eres 🎂</p>
+      <div class="pol rv" style="position:relative;width:240px;margin:30px auto;--rot:rotate(3deg);transform:rotate(3deg)">
+        <div class="tape" style="width:75px;top:-11px;left:50%;transform:translateX(-50%) rotate(-4deg)"></div>
+        <!-- avatar de Roblox: pon la imagen como fotos/avatarRoblox.png -->
+        <div class="si" style="width:224px;height:290px"><img src="fotos/avatarRoblox.png" onerror="this.style.display='none'"><div class="ph">fotos/avatarRoblox.png<br>← avatar Roblox de ella</div></div>
+        <span class="pcap">¡baila! 💃</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="scrp" style="background:#100a0e">
+    <div class="bgl">
+      <div class="stk" style="width:90px;height:90px;top:60px;right:6%;transform:rotate(-8deg)"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker24.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker24.png</div></div></div>
+      <div class="pol" style="--rot:rotate(9deg);width:155px;bottom:40px;left:-8px;transform:rotate(9deg)"><div class="tape" style="width:48px;top:-8px;left:36%"></div><div class="si" style="width:139px;height:172px"><img src="fotos/foto28.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto28.jpg</div></div></div>
+    </div>
+    <div class="sc">
+      <div class="sticky rv" style="display:inline-block;transform:rotate(-1deg);font-size:22px;margin-bottom:24px;z-index:6;position:relative">Si pudiera describirte… ✨</div>
+      <div class="card-grid rv" id="descCards" style="margin-bottom:50px"></div>
+      <div class="sticky rv" style="display:inline-block;transform:rotate(1deg);font-size:22px;margin:24px 0;z-index:6;position:relative">19 razones por las que el mundo es mejor porque existes 🌍</div>
+      <div class="card-grid rv" id="reasonCards"></div>
+    </div>
+  </section>
+
+  <section class="scrp" style="background:linear-gradient(180deg,#100a0e,#0d0b0c)">
+    <div class="bgl">
+      <div class="pol" style="--rot:rotate(8deg);width:160px;bottom:40px;left:-10px;transform:rotate(8deg)"><div class="tape" style="width:50px;top:-10px;left:37%"></div><div class="si" style="width:144px;height:190px"><img src="fotos/foto29.jpg" onerror="this.style.display='none'"><div class="ph">fotos/foto29.jpg</div></div></div>
+      <div class="stk" style="width:90px;height:90px;top:80px;right:8%;transform:rotate(12deg)"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker25.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker25.png</div></div></div>
+    </div>
+    <div class="sc" style="text-align:center">
+      <div class="sticky dark rv" style="display:inline-block;transform:rotate(-2deg);font-size:22px;margin-bottom:24px;z-index:6;position:relative">Un mensaje de tu novio 🎬</div>
+      <div class="pol rv" style="position:relative;max-width:340px;margin:0 auto 50px;--rot:rotate(2deg);transform:rotate(2deg)">
+        <div class="tape" style="width:70px;top:-11px;left:15%;transform:rotate(-7deg)"></div>
+        <div class="tape" style="width:70px;top:-11px;right:15%;transform:rotate(6deg)"></div>
+        <div class="si" style="width:100%;height:340px">
+          <video src="videos/video2.mp4" controls
+            onerror="this.style.display='none'"></video>
+          <div class="ph">videos/video2.mp4<br>← tu video mensaje para ella</div>
+        </div>
+        <span class="pcap">▶ play</span>
+      </div>
+      <div class="sticky rv" style="display:inline-block;transform:rotate(1deg);font-size:22px;margin:20px 0 24px;z-index:6;position:relative">Caja de vales 🎟️ — Porque pronto dejaremos de estar a distancia</div>
+      <div class="vales-grid rv" id="valesBox"></div>
+    </div>
+  </section>
+
+  <section class="scrp" style="background:radial-gradient(ellipse at 50% 100%,#241018,#0d0b0c);text-align:center">
+    <div class="bgl">
+      <div class="stk" style="width:90px;height:90px;top:50px;left:8%;transform:rotate(-10deg)"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker26.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker26.png</div></div></div>
+      <div class="stk" style="width:90px;height:90px;top:50px;right:8%;transform:rotate(12deg)"><div class="si" style="width:90px;height:90px"><img src="stickers/sticker27.png" onerror="this.style.display='none'"><div class="ph">stickers/sticker27.png</div></div></div>
+    </div>
+    <div class="sc">
+      <div class="final-text rv">
+        Gracias por estos tres meses maravillosos.<br>
+        Gracias por existir.<br>
+        Gracias por elegirme.<br>
+        Te amo más de lo que estas palabras pueden explicar.
+        <div class="sig">Con amor, tu novio ❤️</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MÚSICA -->
+<button class="mbtn" onclick="toggleMusic()">🎵</button>
+<div class="sp" id="spEmbed">
+  <iframe style="border-radius:8px" src="https://open.spotify.com/embed/playlist/579wT6uwhdSFPsaMDa9js6" width="290" height="152" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+</div>
+
+<!-- MODAL CARTA SEMANAS -->
+<div class="ltr-modal" id="ltrModal">
+  <div class="ltr-paper">
+    <span class="ltr-x" onclick="closeL()">✕</span>
+    <div class="ltr-day" id="lDay"></div>
+    <div id="lText"></div>
+  </div>
+</div>
+
+<script>
+/* ─── CONTADORES ─── */
+const yr=new Date().getFullYear();
+function fmt(ms){const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;return`<span>${d}</span>d ${h}h ${m}m ${s}s`;}
+setInterval(()=>{document.getElementById('c1').innerHTML=fmt(Date.now()-new Date(`${yr}-02-23`));document.getElementById('c2').innerHTML=fmt(Date.now()-new Date(`${yr}-03-07`));},1000);
+
+/* ─── MÚSICA ─── */
+let mOn=false;
+function toggleMusic(){mOn=!mOn;document.getElementById('spEmbed').classList.toggle('show',mOn);document.getElementById('vinyl').classList.toggle('playing',mOn);document.getElementById('tonearm').classList.toggle('on',mOn);}
+
+/* ─── MAPA — cada pin muestra SU foto ─── */
+function showMem(pin){
+  const mc=document.getElementById('memCard');
+  document.getElementById('mcDate').textContent=pin.dataset.date;
+  document.getElementById('mcCap').textContent=pin.dataset.cap;
+  const img=document.getElementById('mcImg');
+  img.src=pin.dataset.img;
+  img.onerror=()=>{img.style.display='none';};
+  img.onload=()=>{img.style.display='block';};
+  mc.style.left=Math.min(pin.offsetLeft-10,pin.parentElement.clientWidth-230)+'px';
+  mc.style.top=(pin.offsetTop+40)+'px';
+  mc.classList.add('show');
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.map-pin')&&!e.target.closest('.mem-card'))document.getElementById('memCard').classList.remove('show');});
+
+/* ─── 13 SEMANAS ─── */
+const SEMANAS=[
+  "Semana 1 — La semana en que nos comenzamos a conocer y me di cuenta de la increible persona que tenia enfrente. Gracias por haber aparecido.",
+  "Semana 2 — Ya no estabamos en el mismo lugar, pero no salias de mi mente, empecé a pensar en ti constantemente, sin razón, todo el tiempo.",
+  "Semana 3 — Despues de tu video de Mr. Desquehacerado ya sabía que ibas a ser especial para mí, pero cada mensaje tuyo me lo confirmaba aún más. Era como un rayito de sol en mis días grises.",
+  "Semana 4 — Una desvelada cambio todo, confesamos lo que sentiamos, fue el momento en que supe que queria intentarlo contigo. Gracias por quererlo también.",
+  "Semana 5 — La semana en que me di cuenta de que quería más, MUCHO MUCHO más de esto.",
+  "Semana 6 — Te pedi oficialmente, cai esclavo de tus abrazos y besos, y me hiciste el hombre más feliz del mundo al decir que sí. Gracias por hacerme tan feliz.",
+  "Semana 7 — Ya eras parte de mi rutina. Ya no me imagino sin eso.",
+  "Semana 8 — Contigo todo se sentia como tener el lado frio de la almohada siempre y andar bien tapadito",
+  "Semana 9 — Semana santa, disfrute cada segundo que estuvimos juntos, y no pude enamorarme infinitamente más de ti",
+  "Semana 10 — Gracias por quedarte. Por elegirme de vuelta cada día.",
+  "Semana 11 — Me haces querer ser mejor como no tienes idea, porque quiero construir una vida con una sola mujer, y esa mujer eres tú",
+  "Semana 12 — Vuelvo a contar los días para verte de nuevo, y cada vez que lo hago me doy cuenta de que el tiempo sin ti es demasiado. Te extraño mucho.",
+  "Semana 13 — Anhelo el día en que ya no tenga que contar las semanas, los días, las horas, los minutos, los segundos sin ti. El día en que simplemente estemos juntos y te levante con varios besitos dirigidos a distintos lugares, sin importar el tiempo ni la distancia. Ojalá ese día llegue pronto, porque cada segundo sin ti se siente como una eternidad.",
+  "Semana 14 - Eres la mejor parte de mi día, la razón por la que sonrío sin razón, el pensamiento feliz que me acompaña a todas partes. Gracias por ser tú, por ser tan increíble y por hacerme tan feliz. No puedo esperar a seguir acumulando semanas, meses y años a tu lado, espero que cada uno de esos días te haga sentir tan amada como tú me haces sentir a mí mi amor",
+  "Semana 15 - Por fin te volvi a ver, y fue como si el tiempo se hubiera detenido solo para nosotros, atrapados en el tiempo con tus palabras y tus besos y caricias.",
+  "Semana 16 - Tuvimos que partir de nuevo, pero yo ya se que todo lo que quiero en esta vida es contigo, asi que se que el tiempo y la distancia no son nada comparados con lo que siento por ti",
+  "Semana 17 - Muero por verte de nuevo, por abrazarte, por besarte, por decirte en persona todo lo que me haces sentir. Gracias por ser tan increíble, por hacerme tan feliz y por ser la mejor parte de mi día",
+  "Semana 18 - Estamos a nada de vernos, y muero por estar contigo, me derrito de amor por ti, quiero agarrarte y no soltarte nunca.",
+  "Semana 19 - La semana de nuestro mesiversario y del cumpleaños de la persona más increíble que conozco. Gracias por ser tú, por existir, por hacerme tan feliz y por elegirme. Te amo con todo mi corazón, y espero que este sea el primero de muchos cumpleaños que celebremos juntos. Ojalá este día esté lleno de amor con tu familia, y tu novio pronto llegara a celebrarte el también, porque tú te mereces todo eso y mucho más. Feliz mes y pronto cumpleaños, mi amor."
+
+];
+const eb=document.getElementById('envBox');
+const wPos=[];
+for(let i=0;i<19;i++){const c=i%4,r=Math.floor(i/4);wPos.push({x:c*168+(Math.sin(i*3.7)*14|0)+10,y:r*120+(Math.cos(i*4.1)*10|0)+10,rot:(i%7)-3});}
+const mW=Math.max(...wPos.map(p=>p.x))+175,mH=Math.max(...wPos.map(p=>p.y))+115;
+eb.style.cssText=`width:${Math.min(mW,700)}px;height:${mH}px;`;
+for(let i=1;i<=19;i++){const e=document.createElement('div');e.className='env';const p=wPos[i-1];e.style.cssText=`left:${p.x}px;top:${p.y}px;transform:rotate(${p.rot}deg);width:155px;height:100px;`;e.innerHTML=`<div class="env-num">Semana ${i}</div>`;e.onclick=()=>{document.getElementById('lDay').textContent='Semana '+i+' 💌';document.getElementById('lText').textContent=SEMANAS[i-1];document.getElementById('ltrModal').classList.add('show');};eb.appendChild(e);}
+function closeL(){document.getElementById('ltrModal').classList.remove('show');}
+document.getElementById('ltrModal').addEventListener('click',e=>{if(e.target===document.getElementById('ltrModal'))closeL();});
+
+/* ─── TARJETAS ─── */
+['La más dulce.','La más hermosa.','La más inteligente.','La más valiente.','Mi lugar favorito.','Mi persona favorita.','La más especial.','La que más me importa.'].forEach(t=>{const c=document.createElement('div');c.className='dcard';c.innerHTML=t;document.getElementById('descCards').appendChild(c);});
+['Porque el mundo es más bonito con tu existencia.','Porque tu curiosidad me inspira.','Porque eres más fuerte de lo que crees.','Porque te mereces todo lo bueno.','Porque haces que los demás se sientan importantes.','Porque eres honesta.','Porque tu energía es contagiosa.','Porque te esfuerzas en todo lo que haces.','Porque cuidas a quienes quieres.','Porque tienes un corazón enorme.','Porque me hiciste creer en el amor otra vez.','Porque eres mi persona favorita.','Porque cada día a tu lado es un regalo.','Porque eres increíblemente única.','Porque te ríes de ti misma.','Porque nunca te rindes.','Porque me eliges a mí.','Porque hoy cumples años y el mundo lo celebra.','Porque sencillamente eres tú, y eso es todo.'].forEach((t,i)=>{const c=document.createElement('div');c.className='dcard';c.innerHTML=`<span class="cn">${i+1}</span>${t}`;document.getElementById('reasonCards').appendChild(c);});
+
+/* ─── VALES ─── */
+['Una cita sorpresa','Una tarde de películas','Un café juntos','Una visita especial','Una tarde donde tú eliges todo','Una caminata','Una sesión de fotos','Una cena','Una aventura espontánea','Un día entero contigo'].forEach(v=>{const d=document.createElement('div');d.className='vale';d.innerHTML=`★ VALE POR ★<span class="vt">${v}</span>`;d.onclick=()=>d.classList.toggle('done');document.getElementById('valesBox').appendChild(d);});
+
+/* ─── LOCK CUMPLEAÑOS ─── */
+// ★ Cambia PREVIEW_BDAY a false antes de subir
+const PREVIEW_BDAY=false;
+const BD=new Date(`${yr}-06-08T00:00:00`).getTime();
+function bdTick(){const d=BD-Date.now();if(d<=0){document.getElementById('bdCd').textContent='¡Ya llegó!';return;}const dd=Math.floor(d/864e5),hh=Math.floor(d/36e5)%24,mm=Math.floor(d/6e4)%60,ss=Math.floor(d/1e3)%60;document.getElementById('bdCd').textContent=`${dd}d ${hh}h ${mm}m ${ss}s`;}
+setInterval(bdTick,1000);bdTick();
+function tryUnlock(){if(Date.now()>=BD)unlockBday();else document.getElementById('bdCd').animate([{color:'#fff'},{color:'#ff4466'},{color:'#fff'}],{duration:600});}
+function unlockBday(){document.body.classList.add('bday');document.getElementById('bday-section').classList.add('show');document.getElementById('sec-lock').style.display='none';document.getElementById('bday-section').scrollIntoView({behavior:'smooth'});rainPetals();}
+if(PREVIEW_BDAY||Date.now()>=BD){document.body.classList.add('bday');document.getElementById('bday-section').classList.add('show');document.getElementById('sec-lock').style.display='none';}
+
+/* ─── PÉTALOS ─── */
+function rainPetals(){const em=['🌸','🌷','✨','💗','⭐','🎊','💫','🌺'];let n=0,iv=setInterval(()=>{const p=document.createElement('div');p.className='petal';p.textContent=em[Math.floor(Math.random()*em.length)];p.style.left=Math.random()*100+'vw';p.style.animationDuration=(3+Math.random()*5)+'s';document.body.appendChild(p);setTimeout(()=>p.remove(),8000);if(++n>160)clearInterval(iv);},120);}
+
+/* ─── REVEAL ─── */
+new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.12}).observe
+// observe all
+;(()=>{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.12});document.querySelectorAll('.rv').forEach(el=>io.observe(el));})();
+
+document.querySelectorAll('.si img').forEach(img => {
+  if(img.complete && img.naturalWidth > 0) {
+    img.style.display = 'block';
+    img.parentElement.classList.add('filled');
+  }
+  img.addEventListener('load', function() {
+    this.style.display = 'block';
+    this.parentElement.classList.add('filled');
+  });
+});
+
+document.querySelectorAll('.si video').forEach(v => {
+  v.style.display = 'block';
+  v.style.width = '100%';
+  v.style.height = '100%';
+  v.style.objectFit = 'cover';
+  v.parentElement.classList.add('filled');
+});
+
+
+</script>
+</body>
+</html>
