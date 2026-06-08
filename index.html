@@ -692,7 +692,7 @@ document.getElementById('ltrModal').addEventListener('click',e=>{if(e.target===d
 /* ─── LOCK CUMPLEAÑOS ─── */
 // ★ Cambia PREVIEW_BDAY a false antes de subir
 const PREVIEW_BDAY=false;
-const BD=new Date(`${yr}-06-08T00:00:00`).getTime();
+const BD=new Date(`${yr}-06-08T08:00:00`).getTime();
 function bdTick(){const d=BD-Date.now();if(d<=0){document.getElementById('bdCd').textContent='¡Ya llegó!';return;}const dd=Math.floor(d/864e5),hh=Math.floor(d/36e5)%24,mm=Math.floor(d/6e4)%60,ss=Math.floor(d/1e3)%60;document.getElementById('bdCd').textContent=`${dd}d ${hh}h ${mm}m ${ss}s`;}
 setInterval(bdTick,1000);bdTick();
 function tryUnlock(){if(Date.now()>=BD)unlockBday();else document.getElementById('bdCd').animate([{color:'#fff'},{color:'#ff4466'},{color:'#fff'}],{duration:600});}
