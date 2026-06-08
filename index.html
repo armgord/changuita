@@ -552,8 +552,8 @@ Te ama,
       <div class="pol rv" style="position:relative;width:240px;margin:30px auto;--rot:rotate(3deg);transform:rotate(3deg)">
         <div class="tape" style="width:75px;top:-11px;left:50%;transform:translateX(-50%) rotate(-4deg)"></div>
         <!-- avatar de Roblox: pon la imagen como fotos/avatarRoblox.png -->
-        <div class="si" style="width:224px;height:290px"><img src="fotos/avatarRoblox.png" onerror="this.style.display='none'"><div class="ph">fotos/avatarRoblox.png<br>← avatar Roblox de ella</div></div>
-        <span class="pcap">¡baila! 💃</span>
+        <div class="si" style="width:224px;height:290px"><video src="videos/avatarRoblox.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
+        <span class="pcap">bailaaaa mi chetito! </span>
       </div>
     </div>
   </section>
@@ -683,16 +683,16 @@ function closeL(){document.getElementById('ltrModal').classList.remove('show');}
 document.getElementById('ltrModal').addEventListener('click',e=>{if(e.target===document.getElementById('ltrModal'))closeL();});
 
 /* ─── TARJETAS ─── */
-['La más dulce.','La más hermosa.','La más inteligente.','La más valiente.','Mi lugar favorito.','Mi persona favorita.','La más especial.','La que más me importa.'].forEach(t=>{const c=document.createElement('div');c.className='dcard';c.innerHTML=t;document.getElementById('descCards').appendChild(c);});
-['Porque el mundo es más bonito con tu existencia.','Porque tu curiosidad me inspira.','Porque eres más fuerte de lo que crees.','Porque te mereces todo lo bueno.','Porque haces que los demás se sientan importantes.','Porque eres honesta.','Porque tu energía es contagiosa.','Porque te esfuerzas en todo lo que haces.','Porque cuidas a quienes quieres.','Porque tienes un corazón enorme.','Porque me hiciste creer en el amor otra vez.','Porque eres mi persona favorita.','Porque cada día a tu lado es un regalo.','Porque eres increíblemente única.','Porque te ríes de ti misma.','Porque nunca te rindes.','Porque me eliges a mí.','Porque hoy cumples años y el mundo lo celebra.','Porque sencillamente eres tú, y eso es todo.'].forEach((t,i)=>{const c=document.createElement('div');c.className='dcard';c.innerHTML=`<span class="cn">${i+1}</span>${t}`;document.getElementById('reasonCards').appendChild(c);});
+['La más tierna.','La más guapota prechiochotaaa.','La más inteligente, dedicada y mañosaaa.','La niña más fuerte que conozco.','Mi lugar favorito.','Mi persona favorita.','La más especial en este mundooo.','La unica que me importa y todos los demás a la cola.'].forEach(t=>{const c=document.createElement('div');c.className='dcard';c.innerHTML=t;document.getElementById('descCards').appendChild(c);});
+['Mexico esta unificado por tu amor extraño al norte.','Tus okeyys sirven de combustible para AeroMexico.','La industria del ramen sigue en pie gracias a ti','Los niños de Africa tienen más agua gracias a ti','Porque los espejos tienen el privilegio de verte todos los dias','Porque los changuitos del mundo finalmente tienen representación en Puebla','Porque los abrazos tienen una embajadora de primer nivel.','Porque la palabra "bonita" encontró competencia.','No sudas para no contaminar el ciclo del agua','Porque tienes un corazón más fuerte y enorme que tu repisa.','Los capibaras tienen a alguien en su close','Porque eres mi persona favorita.','La Luna aparece todas las noches para intentar verte.','Las gallinas producen más huevo gracias a ti aunque no te los comas','La industria de lavadoras esta en un boom por tus uniformes','Las mariposas creen que tú eres la evolución final.',' Hay varios platillos de calibre Michelin en ti','Las flores intentan copiar la fotosintesis que hacias en la uni','Porque de todas las cosas buenas que le han pasado al mundo, tú eres una de mis favoritas.'].forEach((t,i)=>{const c=document.createElement('div');c.className='dcard';c.innerHTML=`<span class="cn">${i+1}</span>${t}`;document.getElementById('reasonCards').appendChild(c);});
 
 /* ─── VALES ─── */
-['Una cita sorpresa','Una tarde de películas','Un café juntos','Una visita especial','Una tarde donde tú eliges todo','Una caminata','Una sesión de fotos','Una cena','Una aventura espontánea','Un día entero contigo'].forEach(v=>{const d=document.createElement('div');d.className='vale';d.innerHTML=`★ VALE POR ★<span class="vt">${v}</span>`;d.onclick=()=>d.classList.toggle('done');document.getElementById('valesBox').appendChild(d);});
+['Una cita sorpresaaa','Una tarde de películas','Un helado juntos','Una comida en un lugar nuevo','Una tarde donde tú eliges todo','Una caminata en el parque','Shopping de outfits y nuestras sudaderas','Una cena en un lugar pasado','Una cita con LEGOs','Una ida al festival de los molletes de Sanborns'].forEach(v=>{const d=document.createElement('div');d.className='vale';d.innerHTML=`★ VALE POR ★<span class="vt">${v}</span>`;d.onclick=()=>d.classList.toggle('done');document.getElementById('valesBox').appendChild(d);});
 
 /* ─── LOCK CUMPLEAÑOS ─── */
 // ★ Cambia PREVIEW_BDAY a false antes de subir
 const PREVIEW_BDAY=false;
-const BD=new Date(`${yr}-06-08T08:00:00`).getTime();
+const BD=new Date(`${yr}-06-08T00:00:00`).getTime();
 function bdTick(){const d=BD-Date.now();if(d<=0){document.getElementById('bdCd').textContent='¡Ya llegó!';return;}const dd=Math.floor(d/864e5),hh=Math.floor(d/36e5)%24,mm=Math.floor(d/6e4)%60,ss=Math.floor(d/1e3)%60;document.getElementById('bdCd').textContent=`${dd}d ${hh}h ${mm}m ${ss}s`;}
 setInterval(bdTick,1000);bdTick();
 function tryUnlock(){if(Date.now()>=BD)unlockBday();else document.getElementById('bdCd').animate([{color:'#fff'},{color:'#ff4466'},{color:'#fff'}],{duration:600});}
